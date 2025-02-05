@@ -1,0 +1,16 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+body {
+  background-color: #ecf6ff;
+  padding: 8px;
+}
+
+.grid-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #bfc6ca1f;
+  padding: 16px;
+}
