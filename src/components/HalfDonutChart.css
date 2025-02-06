@@ -1,0 +1,17 @@
+
+.half-donut-chart {
+  display: inline-block;
+  position: relative;
+}
+
+.half-donut-chart svg {
+  overflow: visible;
+}
+
+.half-donut-chart path {
+  transition: fill 0.2s;
+}
+
+.half-donut-chart path:hover {
+  fill: #ffa500;
+}

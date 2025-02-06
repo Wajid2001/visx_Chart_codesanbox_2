@@ -15,31 +15,24 @@ const mockData = [
   { month: "Jun", sales: 1100, growth: 18 },
 ];
 
-const width = 400;
 const height = 400;
 const margin = { top: 20, right: 50, bottom: 50, left: 50 };
 
 const barColors = [
-  "#f98150",
-  "#fad175",
-  "#4277cd",
-  "#9a3769",
-  "#9bc5f3",
-  "#94c5c3",
-  "#92a4bb",
+  '#f98150',
+  '#fad175',
+  '#4277cd',
+  '#9a3769',
+  '#9bc5f3',
+  '#94c5c3',
+  '#92a4bb',
 ];
 
 const pastelColors = {
-  bar: "#9ac7f4", // Pastel Blue
-  line: "#ff6384", // Pastel Pink
-  axis: "#D3D3D3", // Light Gray
+  bar: '#9ac7f4', // Pastel Blue
+  line: '#ff6384', // Pastel Pink
+  axis: '#D3D3D3', // Light Gray
 };
-
-const xScale = scaleBand({
-  domain: mockData.map((d) => d.month),
-  range: [margin.left, width - margin.right],
-  padding: 0.3,
-});
 
 const yBarScale = scaleLinear({
   domain: [0, Math.max(...mockData.map((d) => d.sales))],
@@ -51,7 +44,8 @@ const yLineScale = scaleLinear({
   range: [height - margin.bottom, margin.top],
 });
 
-const DualAxisChart = () => {
+const DualAxisChart = ({ sizes }) => {
+  const { width } = sizes;
   const {
     showTooltip,
     hideTooltip,
@@ -63,8 +57,14 @@ const DualAxisChart = () => {
   const [hoveredBar, setHoveredBar] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
 
+  const xScale = scaleBand({
+    domain: mockData.map((d) => d.month),
+    range: [margin.left, width - margin.right],
+    padding: 0.3,
+  });
+
   return (
-    <div style={{ position: "relative", height: "100%", width: "100%" }}>
+    <div style={{ position: 'relative', height: '100%', width: '100%' }}>
       <svg width={width} height={height}>
         <Group>
           {/* Left Axis (Sales) */}
@@ -74,10 +74,10 @@ const DualAxisChart = () => {
             stroke={pastelColors.axis}
             tickStroke={pastelColors.axis}
             tickLabelProps={() => ({
-              fill: "black",
+              fill: 'black',
               fontSize: 12,
-              textAnchor: "end",
-              dx: "-5",
+              textAnchor: 'end',
+              dx: '-5',
             })}
           />
           {/* Right Axis (Growth) */}
@@ -87,10 +87,10 @@ const DualAxisChart = () => {
             stroke={pastelColors.axis}
             tickStroke={pastelColors.axis}
             tickLabelProps={() => ({
-              fill: "black",
+              fill: 'black',
               fontSize: 12,
-              textAnchor: "start",
-              dx: "5",
+              textAnchor: 'start',
+              dx: '5',
             })}
           />
           {/* Bottom Axis */}
@@ -100,9 +100,9 @@ const DualAxisChart = () => {
             stroke={pastelColors.axis}
             tickStroke={pastelColors.axis}
             tickLabelProps={() => ({
-              fill: "black",
+              fill: 'black',
               fontSize: 12,
-              textAnchor: "middle",
+              textAnchor: 'middle',
             })}
           />
         </Group>
@@ -136,11 +136,10 @@ const DualAxisChart = () => {
                   hideTooltip();
                   setHoveredBar(null);
                 }}
-                style={{ cursor: "pointer", transition: "fill 0.3s ease" }}
+                style={{ cursor: 'pointer', transition: 'fill 0.3s ease' }}
               />
             );
           })}
-
           {/* Line Chart (Growth) */}
           <LinePath
             data={mockData}
@@ -150,8 +149,7 @@ const DualAxisChart = () => {
             strokeWidth={2}
             curve={curveMonotoneX}
           />
-
-          {/* Line Points */}
+          ;{/* Line Points */}
           {mockData.map((d, index) => {
             const cx = xScale(d.month) + xScale.bandwidth() / 2;
             const cy = yLineScale(d.growth);
@@ -165,7 +163,7 @@ const DualAxisChart = () => {
                 fill={pastelColors.line}
                 stroke="white"
                 strokeWidth={2}
-                style={{ transition: "r 0.2s ease" }}
+                style={{ transition: 'r 0.2s ease' }}
                 onMouseEnter={(event) => {
                   showTooltip({
                     tooltipData: d,
@@ -189,19 +187,19 @@ const DualAxisChart = () => {
       {tooltipOpen && tooltipData && (
         <div
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: tooltipTop,
             left: tooltipLeft,
-            backgroundColor: "white",
-            color: "#333",
-            padding: "8px",
-            borderRadius: "6px",
-            boxShadow: "0px 4px 8px rgba(0,0,0,0.2)",
-            border: "1px solid #ddd",
-            fontSize: "12px",
-            fontWeight: "bold",
-            pointerEvents: "none",
-            transform: "translate(-50%, -100%)",
+            backgroundColor: 'white',
+            color: '#333',
+            padding: '8px',
+            borderRadius: '6px',
+            boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
+            border: '1px solid #ddd',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            pointerEvents: 'none',
+            transform: 'translate(-50%, -100%)',
           }}
         >
           <div>
@@ -216,19 +214,30 @@ const DualAxisChart = () => {
           {/* Tooltip arrow */}
           <div
             style={{
-              position: "absolute",
-              bottom: "-5px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "0",
-              height: "0",
-              borderLeft: "5px solid transparent",
-              borderRight: "5px solid transparent",
-              borderTop: "5px solid white",
+              position: 'absolute',
+              bottom: '-5px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '0',
+              height: '0',
+              borderLeft: '5px solid transparent',
+              borderRight: '5px solid transparent',
+              borderTop: '5px solid white',
             }}
           ></div>
         </div>
       )}
+      <span
+        style={{
+          position: 'absolute',
+          bottom: 10,
+          right: 10,
+          fontSize: 12,
+          color: '#aaa',
+        }}
+      >
+        Last Update: {new Date().toLocaleString('en-US', { timeZone: 'UTC' })}
+      </span>
     </div>
   );
 };

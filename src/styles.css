@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+
 .App {
   font-family: sans-serif;
   text-align: center;
 }
+
+* {
+  font-family: 'Google Sans', sans-serif;
+}
+
 body {
   background-color: #ecf6ff;
   padding: 8px;
@@ -14,3 +21,4 @@ body {
   border: 1px solid #bfc6ca1f;
   padding: 16px;
 }
+

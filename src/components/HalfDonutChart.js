@@ -1,16 +1,15 @@
-import React, { useMemo, useState } from "react";
-import { Pie } from "@visx/shape";
-import { Group } from "@visx/group";
-import { scaleOrdinal } from "@visx/scale";
-import { useTooltip } from "@visx/tooltip";
-import { localPoint } from "@visx/event";
-import { arc as d3Arc } from "d3-shape";
-import { LegendOrdinal } from "@visx/legend";
+import React, { useMemo, useState } from 'react';
+import { Pie } from '@visx/shape';
+import { Group } from '@visx/group';
+import { scaleOrdinal } from '@visx/scale';
+import { useTooltip } from '@visx/tooltip';
+import { localPoint } from '@visx/event';
+import { arc as d3Arc } from 'd3-shape';
+import { LegendOrdinal } from '@visx/legend';
 
-
-const DonutChart = ({ sizes, data, title = '' }) => {
+const DonutChart = ({ sizes, data }) => {
   const { width } = sizes;
-  const height = 345;
+  const height = 400;
   const {
     showTooltip,
     hideTooltip,
@@ -44,24 +43,17 @@ const DonutChart = ({ sizes, data, title = '' }) => {
         width,
       }}
     >
-      {title && (
-        <h4
-          style={{
-            margin: '4px 0 12px 0',
-            textAlign: 'left',
-          }}
-        >
-          {title}
-        </h4>
-      )}
-
-      {/* Legend */}
-      <div
+      <h4
         style={{
-          display: 'flex',
-          width: '100%',
+          margin: '4px 0 12px 0',
+          textAlign: 'left',
         }}
       >
+        Trade Capture
+      </h4>
+
+      {/* Legend */}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 0 0 0">
           {(labels) => (
             <div
@@ -69,6 +61,7 @@ const DonutChart = ({ sizes, data, title = '' }) => {
                 display: 'flex',
                 width,
                 flexWrap: 'wrap',
+                // justifyContent: 'space-around',
               }}
             >
               {labels.map((label, index) => {
@@ -152,6 +145,8 @@ const DonutChart = ({ sizes, data, title = '' }) => {
           <Pie
             data={filteredData}
             pieValue={(d) => d.value}
+            startAngle={-Math.PI / 2}
+            endAngle={Math.PI / 2}
             outerRadius={radius}
             innerRadius={innerRadius}
             padAngle={padAngle}
@@ -179,6 +174,7 @@ const DonutChart = ({ sizes, data, title = '' }) => {
                     key={`arc-${index}`}
                     onMouseEnter={(event) => {
                       const coords = localPoint(event);
+
                       showTooltip({
                         tooltipData: arc.data,
                         tooltipLeft: event.clientX + 10,
@@ -217,7 +213,7 @@ const DonutChart = ({ sizes, data, title = '' }) => {
                         }}
                       />
                     )}
-                    <text
+                    {/* <text
                       x={centroidX}
                       y={centroidY}
                       dy=".33em"
@@ -229,7 +225,7 @@ const DonutChart = ({ sizes, data, title = '' }) => {
                       }
                     >
                       {arc.data.label}
-                    </text>
+                    </text> */}
                   </g>
                 );
               })
@@ -266,10 +262,11 @@ const DonutChart = ({ sizes, data, title = '' }) => {
           </div>
         </div>
       )}
+
       <span
         style={{
           position: 'absolute',
-          bottom: -60,
+          bottom: 0,
           right: 10,
           fontSize: 12,
           color: '#aaa',

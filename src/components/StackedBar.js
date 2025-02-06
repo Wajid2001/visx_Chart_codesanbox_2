@@ -6,7 +6,7 @@ import { AxisBottom, AxisLeft } from "@visx/axis";
 import { LegendOrdinal } from "@visx/legend";
 import { TooltipWithBounds, useTooltip, defaultStyles } from "@visx/tooltip";
 
-const width = 400;
+// const width = 400;
 const height = 400;
 const margin = { top: 20, right: 30, bottom: 50, left: 60 };
 
@@ -53,12 +53,6 @@ const colors = {
   Commodity: "#A64CA6",
 };
 
-const xScale = scaleBand({
-  domain: data.map((d) => d.category),
-  range: [0, width - margin.left - margin.right],
-  padding: 0.3,
-});
-
 const yScale = scaleLinear({
   domain: [0, 100],
   nice: true,
@@ -78,13 +72,21 @@ const tooltipStyles = {
   borderRadius: "5px",
 };
 
-const StackedBarChart = () => {
+const StackedBarChart = ({ sizes }) => {
+  const { width } = sizes;
   const [hoveredBar, setHoveredBar] = useState(null);
   const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop } =
     useTooltip();
 
+
+  const xScale = scaleBand({
+    domain: data.map((d) => d.category),
+    range: [0, width - margin.left - margin.right],
+    padding: 0.3,
+  }); 
+
   return (
-    <div style={{ position: "relative", height: "100%", width: "100%" }}>
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <svg width={width} height={height}>
         <Group left={margin.left} top={margin.top}>
           {/* Y Axis */}
@@ -92,9 +94,9 @@ const StackedBarChart = () => {
             scale={yScale}
             stroke="black"
             tickLabelProps={() => ({
-              fill: "black",
+              fill: 'black',
               fontSize: 12,
-              textAnchor: "end",
+              textAnchor: 'end',
             })}
           />
 
@@ -102,9 +104,9 @@ const StackedBarChart = () => {
             scale={xScale}
             top={height - margin.bottom}
             tickLabelProps={() => ({
-              fill: "black",
+              fill: 'black',
               fontSize: 12,
-              textAnchor: "middle",
+              textAnchor: 'middle',
             })}
           />
 
@@ -142,8 +144,8 @@ const StackedBarChart = () => {
                       hideTooltip();
                     }}
                     style={{
-                      transition: "0.2s",
-                      cursor: "pointer",
+                      transition: '0.2s',
+                      cursor: 'pointer',
                       opacity:
                         hoveredBar === `${bar.key}-${bar.index}` ? 0.7 : 1,
                     }}
@@ -158,7 +160,7 @@ const StackedBarChart = () => {
           scale={colorScale}
           direction="row"
           labelMargin="0 15px 0 0"
-          style={{ fontSize: "12px" }}
+          style={{ fontSize: '12px' }}
         />
       </svg>
 
@@ -171,6 +173,15 @@ const StackedBarChart = () => {
           <strong>{tooltipData.key}:</strong> {tooltipData.value}%
         </TooltipWithBounds>
       )}
+      <span
+        style={{
+          marginLeft: 'auto',
+          fontSize: 12,
+          color: '#aaa',
+        }}
+      >
+        Last Update: {new Date().toLocaleString('en-US', { timeZone: 'UTC' })}
+      </span>
     </div>
   );
 };
