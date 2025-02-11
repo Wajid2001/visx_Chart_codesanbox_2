@@ -154,7 +154,6 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { observer } from '@arcesium/arc-mobx-tools';
 import DonutChart from 'components/charts/DonutChart';
 import DualAxisChart from 'components/charts/DualAxisChart';
 import StackedBarChart from 'components/charts/StackedBar';
@@ -228,7 +227,4 @@ const ChartWrapper = ({ children, md }) => {
   );
 };
 
-export default observer(SyncDetailsPage);
-
-
-
+export default SyncDetailsPage;
