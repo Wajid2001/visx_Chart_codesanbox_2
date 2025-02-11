@@ -11,14 +11,22 @@
 
 body {
   background-color: #ecf6ff;
-  padding: 8px;
+  margin: 0px;  
+  padding: 0px;
+}
+
+.grid {
+  display: flex;
 }
 
 .grid-card {
-  background-color: white;
+  position: relative; 
+  flex: 1 1 100%;
+  background-color: rgba(65, 105, 225, 0.1);
   border-radius: 8px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
-  border: 1px solid #bfc6ca1f;
-  padding: 16px;
+  border: 1px solid royalblue;
+  padding: 16px !important;
+  margin: 4px;
 }
 

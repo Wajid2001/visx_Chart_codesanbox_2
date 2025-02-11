@@ -74,7 +74,6 @@ const TreeMapChart = ({ sizes, data: _data, title }) => {
               }}
             >
               {labels.map((label, index) => {
-                console.log(label, _data, 'wajid');
                 // if (index > data.length - 1) {
                 //   return null;
                 // }

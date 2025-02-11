@@ -7,7 +7,7 @@ import { localPoint } from '@visx/event';
 import { arc as d3Arc } from 'd3-shape';
 import { LegendOrdinal } from '@visx/legend';
 
-const DonutChart = ({ sizes, data }) => {
+const HalfDonutChart = ({ sizes, data }) => {
   const { width } = sizes;
   const height = 400;
   const {
@@ -278,4 +278,4 @@ const DonutChart = ({ sizes, data }) => {
   );
 };
 
-export default DonutChart;
+export default HalfDonutChart;
