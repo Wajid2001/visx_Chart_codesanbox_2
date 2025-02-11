@@ -164,7 +164,7 @@ import { useParentSize } from '@visx/responsive';
 import Grid from '@mui/material/Grid';
 import { Box, Container } from "@mui/material";
 
-import './index.css';
+import "./styles.css";
 
 export const SyncDetailsPage = () => {
   const [refreshCharts, setRefreshCharts] = useState(0);
