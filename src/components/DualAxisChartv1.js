@@ -128,7 +128,7 @@ const DualAxisChart = ({ sizes }) => {
                   showTooltip({
                     tooltipData: d,
                     tooltipLeft: event.clientX,
-                    tooltipTop: event.clientY - 50, // Ensure tooltip appears ABOVE the bar
+                    tooltipTop: event.clientY, // Ensure tooltip appears ABOVE the bar
                   });
                   setHoveredBar(index);
                 }}
@@ -187,7 +187,7 @@ const DualAxisChart = ({ sizes }) => {
       {tooltipOpen && tooltipData && (
         <div
           style={{
-            position: 'absolute',
+            position: 'fixed',
             top: tooltipTop,
             left: tooltipLeft,
             backgroundColor: 'white',
@@ -200,6 +200,7 @@ const DualAxisChart = ({ sizes }) => {
             fontWeight: 'bold',
             pointerEvents: 'none',
             transform: 'translate(-50%, -100%)',
+            transition: 'all 0.2s ease-in-out',
           }}
         >
           <div>

@@ -77,14 +77,14 @@ const DualAxisChart = () => {
     if (d) {
       showTooltip({
         tooltipData: d,
-        tooltipLeft: xScale(d.label) + xScale.bandwidth() / 2,
-        tooltipTop: yBarScale(d.barValue),
+        tooltipLeft: event.clientX,
+        tooltipTop: event.clientY,
       });
     }
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: 'relative' }}>
       <svg width={width} height={height}>
         <Group left={margin.left} top={margin.top}>
           {/* Bars */}
@@ -130,6 +130,7 @@ const DualAxisChart = () => {
             ...defaultStyles,
             backgroundColor: pastelColors.tooltipBackground,
             color: pastelColors.tooltipText,
+            position: 'fixed',
           }}
         >
           <div>

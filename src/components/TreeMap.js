@@ -46,7 +46,7 @@ const TreeMapChart = ({ sizes, data: _data, title }) => {
   });
 
   return (
-    <>
+    <div style={{ position: 'relative' }}>
       {/* Legend */}
       <div
         style={{
@@ -169,8 +169,8 @@ const TreeMapChart = ({ sizes, data: _data, title }) => {
                     onMouseEnter={(event) => {
                       showTooltip({
                         tooltipData: node.data,
-                        tooltipLeft: event.clientX + 25,
-                        tooltipTop: event.clientY + height,
+                        tooltipLeft: event.clientX,
+                        tooltipTop: event.clientY,
                       });
                       setHoveredBox(node.data.name);
                     }}
@@ -211,7 +211,7 @@ const TreeMapChart = ({ sizes, data: _data, title }) => {
       {tooltipOpen && tooltipData && (
         <div
           style={{
-            position: 'absolute',
+            position: 'fixed',
             top: tooltipTop,
             left: tooltipLeft,
             backgroundColor: 'white',
@@ -247,7 +247,7 @@ const TreeMapChart = ({ sizes, data: _data, title }) => {
       >
         Last Update: {new Date().toLocaleString('en-US', { timeZone: 'UTC' })}
       </span>
-    </>
+    </div>
   );
 };
 

@@ -177,8 +177,8 @@ const HalfDonutChart = ({ sizes, data }) => {
 
                       showTooltip({
                         tooltipData: arc.data,
-                        tooltipLeft: event.clientX + 10,
-                        tooltipTop: event.clientY - 10,
+                        tooltipLeft: event.clientX,
+                        tooltipTop: event.clientY,
                       });
                       setHoveredArc(arc.data.label);
                     }}
@@ -237,7 +237,7 @@ const HalfDonutChart = ({ sizes, data }) => {
       {tooltipOpen && tooltipData && (
         <div
           style={{
-            position: 'absolute',
+            position: 'fixed',
             top: tooltipTop,
             left: tooltipLeft,
             backgroundColor: 'white',

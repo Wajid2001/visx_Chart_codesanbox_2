@@ -66,10 +66,11 @@ const colorScale = scaleOrdinal({
 
 const tooltipStyles = {
   ...defaultStyles,
-  background: "rgba(0, 0, 0, 0.8)",
-  color: "white",
-  padding: "8px",
-  borderRadius: "5px",
+  background: 'rgba(0, 0, 0, 0.8)',
+  color: 'white',
+  padding: '8px',
+  borderRadius: '5px',
+  position: 'fixed',
 };
 
 const StackedBarChart = ({ sizes }) => {
